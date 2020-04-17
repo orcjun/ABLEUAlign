@@ -9,6 +9,10 @@ VOCAB = 'glove.840B.300d'
 PROGRESS = False
 DEVICE = 'cpu'
 
+class Method:
+    ABLEU = 0
+    BLEU = 1
+
 
 def get_parser():
     parser = argparse.ArgumentParser(
@@ -45,6 +49,9 @@ def get_parser():
         help='Show progress bar.')
     parser.add_argument(
         '--device', '-d', default=DEVICE,
+        help='The `torch.device` value to use in calculations.')
+    parser.add_argument(
+        '--method', '-d', default=Method.ABLEU,
         help='The `torch.device` value to use in calculations.')
 
     return parser
