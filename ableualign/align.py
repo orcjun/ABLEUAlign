@@ -2,13 +2,14 @@ from .ableu_score import sentence_ableu, Similarity
 from .args import DEVICE, MAX_THRESHOLD, MIN_THRESHOLD, WINDOW_SIZE, VOCAB, Method
 
 from nltk.translate.bleu_score import SmoothingFunction, sentence_bleu
+import re
 
 
 def _prepare_sentence(sentence):
     if sentence[-1] == ".":
         sentence = sentence[:-1]
-
-    return sentence.strip().split()
+    sentence = re.sub("[-=+,#/\?:^$.@*\"※~&%ㆍ!』\\‘|\(\)\[\]\<\>`'…》]", " ", sentence)
+    return sentence.lower().strip().split()
 
 
 def _drop(p_n, references, hyp_len, *args, **kwargs):
