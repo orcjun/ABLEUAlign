@@ -14,20 +14,24 @@ def main():
     with open(args.reference) as f:
         reference = f.readlines()
 
-    aligned = align(target, reference,
-                    max_threshold=args.max_threshold,
-                    min_threshold=args.min_threshold,
-                    window_size=args.window_size,
-                    vocab=args.vocab,
-                    cache_dir=args.cache_dir)
+    aligned = align(
+        target,
+        reference,
+        max_threshold=args.max_threshold,
+        min_threshold=args.min_threshold,
+        window_size=args.window_size,
+        vocab=args.vocab,
+        cache_dir=args.cache_dir,
+    )
 
     if args.progress:
         aligned = tqdm(aligned, total=len(reference))
 
-    with open(args.output, 'w') as f:
+    with open(args.output, "w") as f:
         for line in aligned:
-            print(line, file=f, flush=True)
+            # print(line, file=f, flush=True)
+            print("%s\t%s" % (line[0], line[1]), file=f, flush=True)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
