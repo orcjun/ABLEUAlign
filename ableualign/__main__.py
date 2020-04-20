@@ -22,6 +22,7 @@ def main():
         window_size=args.window_size,
         vocab=args.vocab,
         cache_dir=args.cache_dir,
+        method=args.method,
     )
 
     if args.progress:

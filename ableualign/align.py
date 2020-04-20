@@ -9,7 +9,7 @@ def _prepare_sentence(sentence):
     if sentence[-1] == ".":
         sentence = sentence[:-1]
     sentence = re.sub("[-=+,#/\?:^$.@*\"※~&%ㆍ!』\\‘|\(\)\[\]\<\>`'…》]", " ", sentence)
-    return sentence.lower().strip().split()
+    return sentence.strip().lower().split()
 
 
 def _drop(p_n, references, hyp_len, *args, **kwargs):
